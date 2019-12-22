@@ -4,6 +4,7 @@ const ctrl = require('./controller');
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.set('json spaces', 40);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true }));
