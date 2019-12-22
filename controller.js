@@ -60,8 +60,8 @@ module.exports = {
         .connect(url, options)
             .then(async () => {
             const {id = null} = req.params;
-            const {title = null, body = null } = req. body;
-            const result = await Show.updateOne({id}, {body, title});
+            const {original_name = null, genre_ids = null, name = null, popularity = null, origin_country = null, vote_count = null, first_air_date = null, backdrop_path = null, original_language = null, vote_average = null, overview = null, poster_path = null } = req. body;
+            const result = await Show.updateOne({id}, {original_name, genre_ids, name, popularity, origin_country, vote_count,first_air_date, backdrop_path, original_language, vote_average, overview, poster_path});
 
             if(result) res.json(result);
             else res.status(404).send('not found');

@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true }));
 
 app.get('/shows', ctrl.getAllShows);
 app.get('/show/:id', ctrl.getShow);
-app.put('/show/:id', ctrl.editShow);
+app.put('/editShow/:id', ctrl.editShow);
 app.post('/postShow', ctrl.addShow);
 app.post('/removeShow', ctrl.removeShow);
 
