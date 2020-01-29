@@ -17,7 +17,12 @@ useUnifiedTopology: true,
 
 
 
+
 module.exports = {
+
+    defualPage(req, res, next){
+        res.status(200).send( 'Home Page.')
+    },
     getAllShows(req, res, next){
     mongoose
         .connect(url, options)
@@ -78,10 +83,6 @@ module.exports = {
             objForUpdate = { $set: objForUpdate};
             const result = await Show.updateOne({id}, objForUpdate);
 
-            // const { genre_ids = null, name = null , popularity = null , vote_count = null, vote_average = null, overview = null, poster_path = null } = req.body;
-            // const result = await Show.updateOne({id}, {original_name, genre_ids, name, popularity, origin_country, vote_count,first_air_date, backdrop_path, original_language, vote_average, overview, poster_path});
-            // const result = await Show.findOneAndUpdate({id}, {$set:{original_name, genre_ids, name, popularity, origin_country, vote_count,first_air_date, backdrop_path, original_language, vote_average, overview, poster_path}}, { sort: {_id: -1}, upsert: true  });
-
             if(result) res.json(result);
             else res.status(404).send('not found');
         })
@@ -141,5 +142,19 @@ module.exports = {
             res.status(500).send(err.message)
         });
 
+    },
+
+    
+    
+
+    notFound(req, res, next) {
+         res.status(404).send({ message: 'Route'+req.url+' Not found.' });
+      },
+
+    serverErr(error, req, res, next){
+        res.status(500).send('500: Internal Server Error', error);
     }
+
+
+    
 }
